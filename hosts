@@ -17,11 +17,15 @@
 
 # Ex 2: A collection of hosts belonging to the 'webservers' group
 
-## [webservers]
-## alpha.example.org
-## beta.example.org
-## 192.168.1.100
-## 192.168.1.110
+[centos_nodes]
+127.0.0.1 ansible_connection=local
+
+[ubuntu_nodes]
+20.107.196.197 ansible_user=codehub
+
+[linux_nodes:children]
+ubuntu_nodes
+centos_nodes
 
 # If you have multiple hosts following a pattern you can specify
 # them like this:
