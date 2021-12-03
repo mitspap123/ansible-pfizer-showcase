@@ -1,0 +1,15 @@
+---
+- name: Install nginx
+  hosts: centos_nodes
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: latest
+    - name: Start nginx service
+      service:
+        name: nginx
+        State: started
+        enabled: yes
