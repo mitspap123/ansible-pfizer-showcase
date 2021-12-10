@@ -1,0 +1,24 @@
+---
+
+- name: Copy-files
+  hosts: linux_nodes
+  become: true
+
+
+  tasks:
+
+    - name: Copy RedHat files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { src: 'redhat-files/rfile1.txt', dest: '/etc/myfolder'}
+      when: ansible_os_family == 'RedHat'
+
+    - name: Copy Debian files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { src: 'redhat-files/rfile1.txt', dest: '/etc/myfolder'}
+      when: ansible_os_family == 'Debian'
